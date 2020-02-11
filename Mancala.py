@@ -161,9 +161,15 @@ def getFutureState(select, board, maxPlayer):
             elif maxPlayer == False and i == 13:
                 extra = False
 
-        board[i]+=1
+        # Skip opponents Mancala
+        if maxPlayer and i != 13:
+            board[i]+=1
+            moves-=1
+        elif maxPlayer == False and i != 6:
+            board[i]+=1
+            moves-=1
+
         i+=1
-        moves-=1
    
     return board, extra
 
